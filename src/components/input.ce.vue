@@ -1,8 +1,9 @@
 <template>
-  <div ref="wrapper" class="input">
+  <div ref="wrapper" class="input-wrapper">
     <label for="customInput">Custom Element Input</label>
-    <!-- stop the native input event to to avoid sending undefined values in e.detail.value-->
-    <input name="customInput" @input.stop="emitInput"/>
+    <!-- stop the native input event to to avoid sending undefined as the target value -->
+    <!-- send a submit event on keydown.enter to let the form know to submit -->
+    <input name="customInput" @keydown.enter="emitSubmit" @input.stop="emitInput"/>
   </div>
 </template>
 
@@ -25,6 +26,10 @@ export default {
         detail: {value: e.target.value}
       }));
       
+    },
+    emitSubmit() {
+      let form = this.$refs.wrapper.getRootNode().host.closest("form");
+      form.dispatchEvent(new Event("submit", { bubbles: true }));
     }
   },
   mounted() {
@@ -33,3 +38,16 @@ export default {
   }
 }
 </script>
+
+<style>
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--input-gap);
+  align-items: flex-start;
+}
+
+input {
+  width: var(--input-width)
+}
+</style>

@@ -1,4 +1,4 @@
-import Input from './input.vue'
+import Input from './input.ce.vue'
 import { defineCustomElement } from "vue";
 export const CInput = defineCustomElement(Input);
 
