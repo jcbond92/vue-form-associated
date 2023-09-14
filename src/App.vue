@@ -5,7 +5,7 @@
       <input name="standardInput" />
     </div>
     <custom-input name="customInput" @input="handleInput" />
-    <button type="submit">submit</button>
+    <custom-button type="submit">submit</custom-button>
     <div><pre>{{ formData }}</pre></div>
   </form>
 </template>
@@ -13,6 +13,7 @@
 <script>
 // import your component 
 import "./components/input.js"
+import "./components/button.js"
 export default {
   data() {
     return {
@@ -58,22 +59,6 @@ form {
 
 input {
   width: var(--input-width);
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  background-color: royalblue;
-  color: white;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  width: var(--input-width)
-}
-
-button:hover {
-  border-color: black;
 }
 
 pre {
